@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link href="jss/bootstrap.css" rel="stylesheet" type="text/css" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+ <meta charset=utf-8 />
+ <title>हिमालिनी</title>
+</head>
+<body ng-app="anand_v" ng-controller="AppCtrl" jt-view-scroll>
+  
+  
+ <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="slide-nav">
+  <div class="container">
+   <div class="navbar-header">
+    <a class="navbar-toggle" class="btn btn-primary pull-right btnPadR"> 
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </a>
+    <a class="navbar-brand" href="#">हिमालिनी</a>
+    <a class="page" href="#/choose_feed" class="btn btn-primary pull-right btnPadR" ng-show="ifPathNot('/choose_feed')"> 
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </a>
+   </div>
+   <div id="slidemenu">
+     
+      
+     
+    <ul class="nav navbar-nav">
+    
+     <li><a href="#/abt"  class="abt">About</a></li>
+      <li><a href="#/tm" class="abt">Team</a></li>
+     <li><a href="#/con" class="abt">Contact</a></li>
+    <li><a data-toggle="modal" data-target="#myModal" href="#" class="abt">About Apps</a></li>
+    </ul>
+          
+   </div>
+  </div>
+ </div>
+  
+  
+  <!--wrap the page content do not style this-->
+ <div id="page-content">
+   
+  <div class="container" >
+    <div class="row">
+       <div ng-view  class="stcon" ></div>
+
+<div id="veil" ng-show="isLoading"></div>
+<div id="feedLoading" ng-show="isLoading"><img src="713.GIF"></div>
+    <script type="text/ng-template" id="list_view.html">
+
+
+<div class="col-lg-12 cla" ng-repeat="entry in feed_result.entries" jt-repeat-done="layoutDone()" ng-class="beenViewed(entry)" ng-cloak>
+ <div class="mycontener">
+<h4 class="post_title card-header"><a href="" ng-click="viewDetail(entry)" title="view detail" data-toggle="tooltip">{{entry.title}}</a></h4>
+
+<div class="im"><a href="" ng-click="viewDetail(entry)" class="pull-left rssThumb" title="view detail" data-toggle="tooltip"><img ng-repeat="a in mediaOne(entry).thumbnails" ng-src="{{a.url}}"></a></div>
+<div class="content_" ng-bind-html="entry.contentSnippet" > </div>
+<div class="abw" >
+<div class="author" >&nbsp</div>
+<div class="name" >{{entry.author}}</div>
+<div class="datetime" >Posted: {{entry.publishedDate}}</div>
+</div>
+	<!--<a href="{{entry.link}}" target="_blank" title="view at {{feed_result.viewAt}}" data-toggle="tooltip" data-placement="left" class="btn btn-primary pull-right" style="margin: 0 0 5px 10px">View at...</a>-->
+
+	
+
+	
+ <div class="clearfix"></div>
+	
+</div>
+</script>
+<script type="text/ng-template" id="abt.html">
+
+<p>हिमालिनी नेपाल से प्रकाशित होने वाली क वर्ग में सूचिकृत मासिक हिन्दी पत्रिका है । यह १९९८ से लगातार प्रकाशित होती आ रही है । सूचना और संचार जगत में हिमालिनी ने अपनी एक महत्वपूर्ण स्थिति दर्ज करा ली है ।  <br>यह पत्रिका सिर्फ नेपाल में ही लोकप्रिय नहीं है, बल्कि भारत में बिहार राज्य के सीमावर्ती क्षेत्रों में जैसे दरभंगा, मधुबनी, सीतामढ़ी, सुरसंड और उत्तर प्रदेश के कई क्षेत्रों में भी अपनी पहचान बनाए हुए है । जाहिर सी बात है कि हिमालिनी ने नेपाल और भारत के बौद्धिक जगत को जोड़ने का भी काम किया है ।<br>
+
+अपने शुरुआती दौर में हिमालिनी का प्रकाशन त्रैमासिक होता था । किन्तु, हिमालिनी की बढ़ती लोकप्रियता और साहित्य समाज, बुद्धिजीवी वर्ग के बीच इस पत्रिका ने अपने आपको स्थापित किया जिसके परिणामस्वरूप इसके प्रकाशन को त्रैमासिक की जगह मासिक किया गया । यह पत्रिका मधेश के विचारों की संवाहक पत्रिका है, इतना ही नहीं  हिमालिनी  मधेश की आवाज भी है । <br>खास कर देश की राजनीतिक उतार–चढ़ाव पर इसकी तीक्ष्ण नजर रहती है और साथ ही यह कोशिश भी कि बिना किसी पूर्वाग्रह के समाचार का सम्प्रेषण किया जाय । राजनैतिक सांस्कृतिक और सामाजिक विचारों को ईमानदारी के साथ सम्प्रेषित करने की जिम्मेदारी हिमालिनी विगत एक दशक से भी अधिक वर्षों से करती आ रही है और दिन प्रतिदिन खुद को नए तेवर के साथ पाठकों के समक्ष ला रही है । </p>
+<p><img src="logo.png" class='amg'></p>
+
+</script>
+<script type="text/ng-template" id="tm.html">
+<strong>प्रबन्ध निदेशक</strong> सच्चिदानन्द मिश्र     <br>
+<strong>सम्पादक </strong> डॉ. श्वेता दीप्ति<br>
+<strong>महाप्रबन्धक  </strong>कविता दास 
+<p><img src="logo.png" class='amg'></p>
+
+</script>
+<script type="text/ng-template" id="con.html">
+<a href='mailTo:himalini2040@gmail.com'>Himalini2040@gmail.com</a>
+<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d441.6018106590488!2d85.3284642410465!3d27.69212808593663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shimalini!5e0!3m2!1sen!2snp!4v1442150542686" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+</script>
+
+<script type="text/ng-template" id="choose_feed.html">
+<h1 class="mnu">Menu</h1>
+
+<div class="changeList">
+	
+
+	<div class="btn-group btn-block" ng-repeat="feed in prefs.feedList2" jt-repeat-done="layoutDone()">
+		<a ng-click="chooseFeed($index)" class="btn">{{feed}}</a>
+		<!--<a ng-click="removeFeed($index)" class="btn btn-danger" title="Remove feed" data-toggle="tooltip"><i class="foundicon-remove"></i></a>-->
+	</div>
+</div>
+</script> 
+<script>
+(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>   
+<script type="text/ng-template" id="detail_view.html">
+
+
+
+
+<div class="col-lg-12 cla">
+<div class='mycontener'><h4 class="post_title card-header">{{currEntry.title}}</h4>
+<div class="abw am" >
+<div class="author" >&nbsp</div>
+<div class="name" >{{currEntry.author}}</div>
+<div class="datetime" >Posted: {{currEntry.publishedDate}}</div>
+</div>
+	<div  class="imn" ng-bind-html="currEntry.content"></div>
+<div id="fb-root"></div>
+    
+
+    <!-- Your like button code -->
+    <div class="fb-like" 
+        data-href="{{currEntry.link}}" 
+        data-layout="standard" 
+        data-action="like" 
+        data-show-faces="true">
+    </div>
+	<p class="muted">Posted: {{currEntry.publishedDate}} - <a href="{{currEntry.link}}" target="_blank" class="text-info" ng-click="videoStop()">view at {{feed_result.viewAt}}</a></p>
+	</div>
+</div>
+<div clall="clearfix"></div>
+<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="height:30px;">
+    <div class="social fb"><a href="http://www.facebook.com/sharer.php?u={{currEntry.link}}" target="_blank"><span><i></i>Share</span></a></div>
+    <div class="social wt"><a href="whatsapp://send?text=To know more on {{currEntry.title}}, click the link - {{currEntry.link}} (Sent from http://Himalini.com/) " target="_blank"><span><i></i>WhatsApp</span></a></div>
+    <div class="social tw"><a href="http://twitter.com/share?url={{currEntry.link}}" target="_blank"><span><i></i>Tweet</span></a></div>
+ </div>
+</script>
+
+     
+      
+    </div>
+   </div>
+  <!-- /.container -->
+  
+ </div>
+ <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About Apps</h4>
+      </div>
+      <div class="modal-body">
+      <p class="verson">Verson : 1.1.1</p>
+      <p>This "<strong>Himalini apps</strong>" is free mobile aaplication developed to provide hindi news of Himalini.com in smart way. </p>
+        <p class="mp">Developed By</p>
+          <p class="nm">Vijay Kumar Anand</p>
+          <p class="email" style="text-align:center"><a href="mailto:anand2040@gmail.com"><img src="images/mail.png"></a></p>
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+ <!-- /#page-content -->
+ <style>
+ .verson{
+	 color:#777;
+ }
+ .close {
+    color: #fff;
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    opacity: 1.00 !important;
+    text-shadow: 0 1px 0 #fff;
+}
+ .mp{
+	  border-bottom: 1px solid #888;
+    color: #888;
+    font-weight: bold;
+    margin-left: 25%;
+    text-align: center;
+    width: 50%;
+	
+ }
+ .modal-header{
+	 background:#9A0201;
+	 color:#fff;
+ }
+ .nm{
+	 color:#9A0201;
+	 font-weight:bold;
+	 text-align:center;
+ }
+ /* adjust body when menu is open */
+ #feedLoading{
+	 width:100%;
+	 text-align:center;
+	 background:#fff;
+	 padding-top:200px;
+	 height:650px;
+	 background:#9A0201;
+ }
+ .mnu{
+	 text-align:center;
+	 font-size:16px;
+	 color:#337AB7;
+	 border-bottom:1px dashed #777;
+ }
+ .page{
+	 float:right !important;
+ }
+ .page > .icon-bar{
+	 background:#fff;
+ }
+ .stcon{
+	 background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: #555;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px;
+    position: relative;
+	 
+ }
+ .stcon p{
+	 text-align:justify;
+ }
+ .fb{
+	 background:#3a5999;
+ }
+ .social a{
+	color: #fff;
+    display: block;
+    font-size: 14px;
+    line-height: 38px;
+    padding: 5px;
+ }
+ .social a span{
+	 display:inline-block;
+ }
+ 
+ .fb a span i{
+	  background-position: -4px -3px;
+	  vertical-align:middle;
+	  background:url('images/bg_socailbm.png') no-repeat;
+	   display: inline-block;
+    float: left;
+    height: 26px;
+    width: 26px;
+	  
+	  
+ }
+ .wt{
+	 background:#2abe68;
+ }
+ .amg{
+	 opacity:0.24;
+ }
+ .wt a span i{
+	  vertical-align:middle;
+	  background:url('images/bg_socailbm.png') -68px 1px no-repeat;
+	   display: inline-block;
+    float: left;
+    height: 26px;
+    width: 26px;
+	  
+	  
+ }
+ .tw{
+	 background:#03ade8;
+ }
+ .tw a span i{
+	  vertical-align:middle;
+	  background:url('images/bg_socailbm.png') -36px 1px no-repeat;
+	   display: inline-block;
+    float: left;
+    height: 26px;
+    width: 26px;
+	  
+	  
+ }
+ .social{
+	 width:33%;
+	 float:left;
+	 position:relative;
+	 vertical-align:middle;
+	 text-align:center;
+ }
+ .abw{
+	background: #f9f9f9 none repeat scroll 0 0;
+    float: right;
+    font-style: italic;
+    margin-bottom: 10px;
+    padding-top: 4px;
+    position: relative;
+    width: 100%;
+	padding-left:4px;
+ }
+ .author{
+	 background:url(images/author.png) no-repeat;
+	 width:20px;
+	 height:22px;
+	 float:left;
+	  filter: grayscale(100%);
+ }
+ .name{
+	 width:45%;
+	 float:left;
+	 color:#888;
+	 font-size:12px;
+	
+ }
+ .datetime{
+	 color: #999;
+    float: left;
+    font-size: 12px;
+    width: 45%;
+	overflow:hidden;
+	height:22px;
+ }
+ .imn{
+	 text-align:justify;
+	 color:#555;
+ }
+ .imn img{
+	display: block;
+    height: auto;
+    max-width: 100%;
+	width:100%;
+ }
+ .imn img {
+    background: #2db34a;
+    border-radius: 6px
+    transition-property: background, border-radius;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+  }
+  .cla img {
+    background: #2db34a;
+    border-radius: 6px
+    transition-property: background, border-radius;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+  }
+  .imn img:hover {
+    background: #ff7b29;
+    border-radius: 50%;
+  }
+   
+  .cla img:hover {
+    background: #ff7b29;
+    border-radius: 50%;
+  }
+ .imn div p{
+	 text-align:center;
+	 color:#fff;
+	 background:#9a0201;
+ }
+ .navbar-inverse{
+	 background:#9A0201;
+ }
+ .navbar-brand{
+	 font-size:29px;
+	 font-weight:bold;
+	 padding-left:73px;
+	 color:#FFF4F4 !important;
+ }
+ 
+ 
+.card-header::after {
+    background-color: #e1e1e1;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: auto;
+    top: auto;
+    transform-origin: 50% 100% 0;
+    width: 100%;
+    z-index: 15;
+}
+.post-card .card-header {
+    display: block;
+    padding: 10px;
+}
+.card-header {
+    border-radius: 2px 2px 0 0;
+    font-size: 17px;
+}
+.card-footer, .card-header {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    min-height: 23px;
+    padding: 1px 2px;
+    position: relative;
+}
+ body{
+	 background:#EFEFF4;
+ }
+body.slide-active {
+    overflow-x: hidden;
+}
+.mycontener{
+	 background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 15px;
+   
+    position: relative;
+	color:#555;
+	line-height:24px;
+	padding:6px
+}
+.cla{
+	padding: 6px 6px 0 !important;
+}
+/*first child of #page-content so it doesn't shift around*/
+.no-margin-top {
+    margin-top: 0px!important
+}
+/*wrap the entire page content but not nav inside this div if not a fixed top, don't add any top padding */
+#page-content {
+    position: relative;
+    padding-top: 50px;
+    left: 0;
+}
+#page-content.slide-active {
+    padding-top: 0
+}
+.im{
+	float:left;
+	width:30%;
+	margin-right:4px;
+	
+}
+.im img{
+	display: block;
+    height: auto;
+    max-width: 100%;
+	width:100%;
+}.post_title{
+	color:#003;
+	font-size:17px;
+	font-weight:bold;
+	line-height:22px;
+}
+
+.content_{
+	float:left;
+	width:68%;
+	text-align:justify;
+	color:#666;
+}
+/* put toggle bars on the left :: not using button */
+#slide-nav .navbar-toggle ,.page{
+    cursor: pointer;
+    position: relative;
+    line-height: 0;
+    float: left;
+    margin: 0;
+    width: 30px;
+    height: 40px;
+    padding: 10px 0 0 0;
+    border: 0;
+    background: transparent;
+}
+/* icon bar prettyup - optional */
+#slide-nav .navbar-toggle > .icon-bar,.page > .icon-bar {
+    width: 100%;
+    display: block;
+    height: 3px;
+    margin: 5px 0 0 0;
+}
+#slide-nav .navbar-toggle.slide-active .icon-bar {
+    background: orange
+}
+.navbar-header {
+    position: relative
+}
+/* un fix the navbar when active so that all the menu items are accessible */
+.navbar.navbar-fixed-top.slide-active {
+    position: relative
+}
+/* screw writing importants and shit, just stick it in max width since these classes are not shared between sizes */
+@media (max-width:767px) { 
+	#slide-nav .container {
+	    margin: 0;
+	    padding: 0!important;
+	}
+	#slide-nav .navbar-header {
+	    margin: 0 auto;
+	    padding: 0 15px;
+	}
+	#slide-nav .navbar.slide-active {
+	    position: absolute;
+	    width: 80%;
+	    top: -1px;
+	    z-index: 1000;
+	}
+	#slide-nav #slidemenu {
+	    background: #f7f7f7;
+	    left: -100%;
+	    width: 80%;
+	    min-width: 0;
+	    position: absolute;
+	    padding-left: 0;
+	    z-index: 2;
+	    top: -8px;
+	    margin: 0;
+	}
+	#slide-nav #slidemenu .navbar-nav {
+	    min-width: 0;
+	    width: 100%;
+	    margin: 0;
+	}
+	#slide-nav #slidemenu .navbar-nav .dropdown-menu li a {
+	    min-width: 0;
+	    width: 80%;
+	    white-space: normal;
+	}
+	#slide-nav {
+	    border-top: 0
+	}
+	#slide-nav.navbar-inverse #slidemenu {
+	    background: #333
+	}
+	/* this is behind the navigation but the navigation is not inside it so that the navigation is accessible and scrolls*/
+	#slide-nav #navbar-height-col {
+	    position: fixed;
+	    top: 0;
+	    height: 100%;
+	    width: 80%;
+	    left: -80%;
+	    background: #eee;
+	}
+	#slide-nav.navbar-inverse #navbar-height-col {
+	    background: #333;
+	    z-index: 1;
+	    border: 0;
+	}
+	#slide-nav .navbar-form {
+	    width: 100%;
+	    margin: 8px 0;
+	    text-align: center;
+	    overflow: hidden;
+	    /*fast clearfixer*/
+	}
+	#slide-nav .navbar-form .form-control {
+	    text-align: center
+	}
+	#slide-nav .navbar-form .btn {
+	    width: 100%
+	}
+}
+@media (min-width:768px) { 
+	#page-content {
+	    left: 0!important
+	}
+	.navbar.navbar-fixed-top.slide-active {
+	    position: fixed
+	}
+	.navbar-header {
+	    left: 0!important
+	}
+}
+
+ </style>
+  <script src="jss/jquery.min.js"></script>
+ <script src="jss/bootstrap.js"></script>
+ 
+<script src="jss/angular.min.js"></script>
+<script src="jss/angular-sanitize.min.js"></script>
+<script src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+'use strict';
+
+google.load("feeds", "1");
+</script>
+
+<script src="jt_AJS.js"></script>
+<script src="anand_v.js"></script>
+ <script>
+ $(document).ready(function () {
+$(".abt").click(function(e){
+	
+	$(".navbar-toggle").click();
+	//$(".slidemenu").toggle(50);
+	
+});
+
+    //stick in the fixed 100% height behind the navbar but don't wrap it
+    $('#slide-nav.navbar .container').append($('<div id="navbar-height-col"></div>'));
+
+    // Enter your ids or classes
+    var toggler = '.navbar-toggle';
+    var pagewrapper = '#page-content';
+    var navigationwrapper = '.navbar-header';
+    var menuwidth = '100%'; // the menu inside the slide menu itself
+    var slidewidth = '80%';
+    var menuneg = '-100%';
+    var slideneg = '-80%';
+
+
+    $("#slide-nav").on("click", toggler, function (e) {
+
+        var selected = $(this).hasClass('slide-active');
+
+        $('#slidemenu').stop().animate({
+            left: selected ? menuneg : '0px'
+        });
+
+        $('#navbar-height-col').stop().animate({
+            left: selected ? slideneg : '0px'
+        });
+
+        $(pagewrapper).stop().animate({
+            left: selected ? '0px' : slidewidth
+        });
+
+        $(navigationwrapper).stop().animate({
+            left: selected ? '0px' : slidewidth
+        });
+
+
+        $(this).toggleClass('slide-active', !selected);
+        $('#slidemenu').toggleClass('slide-active');
+
+
+        $('#page-content, .navbar, body, .navbar-header').toggleClass('slide-active');
+
+
+    });
+
+
+    var selected = '#slidemenu, #page-content, body, .navbar, .navbar-header';
+
+
+    $(window).on("resize", function () {
+
+        if ($(window).width() > 767 && $('.navbar-toggle').is(':hidden')) {
+            $(selected).removeClass('slide-active');
+        }
+
+
+    });
+
+
+
+
+});
+ </script>
+
+</body>
+</html>
